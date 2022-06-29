@@ -31,6 +31,7 @@ class _SignInScreenState extends State<SignInScreen> {
     // print(h);
     // print(w);
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: SizedBox(
           height: MediaQuery.of(context).size.height,
