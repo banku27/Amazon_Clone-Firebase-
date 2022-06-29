@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class TextFieldWidget extends StatefulWidget {
   final String title;
-  final String hintText;
   final TextEditingController controller;
   final bool obscureText;
+  final String hintText;
   const TextFieldWidget({
     Key? key,
     required this.title,
-    required this.hintText,
     required this.controller,
     required this.obscureText,
+    required this.hintText,
   }) : super(key: key);
 
   @override
@@ -43,14 +42,17 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: EdgeInsets.only(bottom: 10.h),
+          padding: const EdgeInsets.only(bottom: 15),
           child: Text(
             widget.title,
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17.sp),
+            style: const TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 17,
+            ),
           ),
         ),
         Container(
@@ -65,27 +67,33 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
                     color: Colors.black.withOpacity(0.2),
                     blurRadius: 8,
                     spreadRadius: 2,
-                  ),
+                  )
           ]),
           child: TextField(
             focusNode: focusNode,
             obscureText: widget.obscureText,
+            controller: widget.controller,
             maxLines: 1,
             decoration: InputDecoration(
-                fillColor: Colors.white,
-                filled: true,
-                hintText: widget.hintText,
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(3.r),
-                  borderSide: const BorderSide(color: Colors.grey, width: 1),
+              fillColor: Colors.white,
+              filled: true,
+              hintText: widget.hintText,
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(3),
+                borderSide: const BorderSide(
+                  color: Colors.grey,
+                  width: 1,
                 ),
-                focusedBorder: const OutlineInputBorder(
-                    borderSide: BorderSide(
+              ),
+              focusedBorder: const OutlineInputBorder(
+                borderSide: BorderSide(
                   color: Colors.orange,
                   width: 1,
-                ))),
+                ),
+              ),
+            ),
           ),
-        ),
+        )
       ],
     );
   }
