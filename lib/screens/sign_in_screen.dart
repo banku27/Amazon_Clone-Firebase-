@@ -1,4 +1,5 @@
 import 'package:amazon_clone/constants.dart';
+import 'package:amazon_clone/screens/sign_up_screen.dart';
 import 'package:amazon_clone/utils/color_theme.dart';
 import 'package:amazon_clone/widgets/custom_main_button.dart';
 import 'package:amazon_clone/widgets/text_field_widget.dart';
@@ -128,7 +129,12 @@ class _SignInScreenState extends State<SignInScreen> {
                       ),
                       color: Colors.grey[400]!,
                       isLoading: false,
-                      onPressed: () {}),
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (_) => const SignUpScreen()));
+                      }),
                 ],
               ),
             ),
