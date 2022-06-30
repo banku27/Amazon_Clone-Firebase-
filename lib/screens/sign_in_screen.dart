@@ -145,7 +145,7 @@ class _SignInScreenState extends State<SignInScreen> {
                       color: Colors.grey[400]!,
                       isLoading: false,
                       onPressed: () {
-                        Navigator.push(
+                        Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
                                 builder: (_) => const SignUpScreen()));
