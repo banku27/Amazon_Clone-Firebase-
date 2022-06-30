@@ -20,6 +20,7 @@ class _SignInScreenState extends State<SignInScreen> {
   TextEditingController passwordController = TextEditingController();
 
   AuthenticationMethods authenticationMethods = AuthenticationMethods();
+  bool isLoding = false;
 
   @override
   void dispose() {
@@ -97,12 +98,18 @@ class _SignInScreenState extends State<SignInScreen> {
                                 style: TextStyle(color: Colors.black),
                               ),
                               color: yellowColor,
-                              isLoading: false,
+                              isLoading: isLoding,
                               onPressed: () async {
+                                setState(() {
+                                  isLoding = true;
+                                });
                                 String output =
                                     await authenticationMethods.signInUser(
                                         email: emailController.text,
                                         password: passwordController.text);
+                                setState(() {
+                                  isLoding = false;
+                                });
                                 if (output == 'success') {
                                 } else {
                                   Utils().showSnackBar(

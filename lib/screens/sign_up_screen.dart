@@ -135,6 +135,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                     if (output == 'success') {
                                       //functions
                                       log('doing next step');
+                                      Navigator.pushReplacement(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (_) =>
+                                                  const SignInScreen()));
                                     } else {
                                       //error
                                       Utils().showSnackBar(
