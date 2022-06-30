@@ -1,6 +1,10 @@
-import 'package:amazon_clone/constants.dart';
+import 'dart:developer';
+
+import 'package:amazon_clone/utils/constants.dart';
+import 'package:amazon_clone/resources/authentication_methods.dart';
 import 'package:amazon_clone/screens/sign_in_screen.dart';
 import 'package:amazon_clone/utils/color_theme.dart';
+import 'package:amazon_clone/utils/utils.dart';
 
 import 'package:amazon_clone/widgets/custom_main_button.dart';
 import 'package:amazon_clone/widgets/text_field_widget.dart';
@@ -19,6 +23,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
   TextEditingController emailController = TextEditingController();
   TextEditingController addressController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+
+  AuthenticationMethods authenticationMethods = AuthenticationMethods();
 
   bool isLoading = false;
 
@@ -113,10 +119,28 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                   ),
                                   color: yellowColor,
                                   isLoading: isLoading,
-                                  onPressed: () {
+                                  onPressed: () async {
                                     setState(() {
                                       isLoading = true;
                                     });
+                                    String output =
+                                        await authenticationMethods.signUpUser(
+                                            name: nameController.text,
+                                            address: addressController.text,
+                                            email: emailController.text,
+                                            password: passwordController.text);
+                                    setState(() {
+                                      isLoading = false;
+                                    });
+                                    if (output == 'success') {
+                                      //functions
+                                      log('doing next step');
+                                    } else {
+                                      //error
+                                      Utils().showSnackBar(
+                                          context: context, content: output);
+                                      // log(output);
+                                    }
                                   }),
                             )
                           ],
@@ -137,9 +161,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     onPressed: () {
                       Navigator.pushReplacement(
                         context,
-                        MaterialPageRoute(builder: (context) {
-                          return const SignInScreen();
-                        }),
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return const SignInScreen();
+                          },
+                        ),
                       );
                     },
                   ),
