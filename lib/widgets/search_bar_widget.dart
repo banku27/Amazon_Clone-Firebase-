@@ -76,7 +76,7 @@ class SearchBarWidget extends StatelessWidget with PreferredSizeWidget {
           ),
           IconButton(
             onPressed: () {},
-            icon: Icon(Icons.mic_none_outlined),
+            icon: const Icon(Icons.mic_none_outlined),
           ),
         ],
       ),

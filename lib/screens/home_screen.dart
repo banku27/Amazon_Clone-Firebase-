@@ -21,7 +21,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           body: SingleChildScrollView(
             child: Column(
-              children: [
+              children: const [
                 CategoryListView(),
                 BannerAdWidget(),
               ],
