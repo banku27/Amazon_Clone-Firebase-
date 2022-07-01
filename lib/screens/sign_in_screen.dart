@@ -93,29 +93,30 @@ class _SignInScreenState extends State<SignInScreen> {
                         Align(
                           alignment: Alignment.center,
                           child: CustomMainButton(
-                              child: const Text(
-                                'Sign In',
-                                style: TextStyle(color: Colors.black),
-                              ),
-                              color: yellowColor,
-                              isLoading: isLoding,
-                              onPressed: () async {
-                                setState(() {
-                                  isLoding = true;
-                                });
-                                String output =
-                                    await authenticationMethods.signInUser(
-                                        email: emailController.text,
-                                        password: passwordController.text);
-                                setState(() {
-                                  isLoding = false;
-                                });
-                                if (output == 'success') {
-                                } else {
-                                  Utils().showSnackBar(
-                                      context: context, content: output);
-                                }
-                              }),
+                            child: const Text(
+                              'Sign In',
+                              style: TextStyle(color: Colors.black),
+                            ),
+                            color: yellowColor,
+                            isLoading: isLoding,
+                            onPressed: () async {
+                              setState(() {
+                                isLoding = true;
+                              });
+                              String output =
+                                  await authenticationMethods.signInUser(
+                                      email: emailController.text,
+                                      password: passwordController.text);
+                              setState(() {
+                                isLoding = false;
+                              });
+                              if (output == 'success') {
+                              } else {
+                                Utils().showSnackBar(
+                                    context: context, content: output);
+                              }
+                            },
+                          ),
                         ),
                       ],
                     ),
