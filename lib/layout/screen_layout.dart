@@ -1,4 +1,5 @@
 import 'package:amazon_clone/utils/color_theme.dart';
+import 'package:amazon_clone/utils/constants.dart';
 import 'package:flutter/material.dart';
 
 class ScreenLayout extends StatefulWidget {
@@ -32,20 +33,7 @@ class _ScreenLayoutState extends State<ScreenLayout> {
       child: Scaffold(
         body: PageView(
           controller: pageController,
-          children: const [
-            Center(
-              child: Text('Home screen'),
-            ),
-            Center(
-              child: Text('account screen'),
-            ),
-            Center(
-              child: Text('Cart screen'),
-            ),
-            Center(
-              child: Text('More screen'),
-            ),
-          ],
+          children: screens,
         ),
         bottomNavigationBar: Container(
           decoration: BoxDecoration(
