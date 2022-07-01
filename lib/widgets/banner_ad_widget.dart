@@ -85,39 +85,39 @@ class _BannerAdWidgetState extends State<BannerAdWidget> {
 
 Widget getSmallAdWidget({required int index, required double side}) {
   return Container(
-      height: side,
-      width: side,
-      decoration: ShapeDecoration(
-        color: Colors.white,
-        shadows: [
-          BoxShadow(
-              color: Colors.black.withOpacity(0.3),
-              spreadRadius: 1,
-              blurRadius: 8),
-        ],
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10),
+    height: side,
+    width: side,
+    decoration: ShapeDecoration(
+      color: Colors.white,
+      shadows: [
+        BoxShadow(
+            color: Colors.black.withOpacity(0.3),
+            spreadRadius: 1,
+            blurRadius: 8),
+      ],
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10.r),
+      ),
+    ),
+    child: Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: FittedBox(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Image.network(
+              smallAds[index],
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: 10.h),
+              child: Text(
+                adItemNames[index],
+                style: TextStyle(fontSize: 13.sp, fontWeight: FontWeight.w500),
+              ),
+            )
+          ],
         ),
       ),
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: FittedBox(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Image.network(
-                smallAds[index],
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 10),
-                child: Text(
-                  adItemNames[index],
-                  style: const TextStyle(
-                      fontSize: 13, fontWeight: FontWeight.w500),
-                ),
-              )
-            ],
-          ),
-        ),
-      ));
+    ),
+  );
 }
