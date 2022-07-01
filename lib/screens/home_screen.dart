@@ -1,3 +1,4 @@
+import 'package:amazon_clone/widgets/banner_ad_widget.dart';
 import 'package:amazon_clone/widgets/categories_horizontal_list_bar.dart';
 import 'package:amazon_clone/widgets/search_bar_widget.dart';
 import 'package:flutter/material.dart';
@@ -22,6 +23,7 @@ class _HomeScreenState extends State<HomeScreen> {
             child: Column(
               children: [
                 CategoryListView(),
+                BannerAdWidget(),
               ],
             ),
           )),
