@@ -17,7 +17,7 @@ class ProductShowList extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.all(8),
       padding: const EdgeInsets.all(8),
-      height: 280.h,
+      height: 160.h,
       width: MediaQuery.of(context).size.width,
       color: Colors.white,
       child: Column(
@@ -35,9 +35,9 @@ class ProductShowList extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                const Padding(
-                  padding: EdgeInsets.only(left: 14),
-                  child: Text(
+                Padding(
+                  padding: EdgeInsets.only(left: 14.w),
+                  child: const Text(
                     "Show more",
                     style: TextStyle(color: activeCyanColor),
                   ),
@@ -52,7 +52,7 @@ class ProductShowList extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               children: children,
             ),
-          )
+          ),
         ],
       ),
     );
