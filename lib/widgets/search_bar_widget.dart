@@ -59,9 +59,11 @@ class SearchBarWidget extends StatelessWidget with PreferredSizeWidget {
                 onTap: () {
                   if (isReadOnly) {
                     Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const SearchScreen()));
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const SearchScreen(),
+                      ),
+                    );
                   }
                 },
                 decoration: InputDecoration(

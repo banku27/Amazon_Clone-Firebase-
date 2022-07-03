@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import 'package:amazon_clone/models/user_model_details.dart';
 import 'package:amazon_clone/utils/color_theme.dart';
-import 'package:amazon_clone/utils/constants.dart';
 
 class UserDetailsBar extends StatelessWidget {
   final double offset;
