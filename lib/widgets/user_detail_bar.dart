@@ -1,13 +1,17 @@
-import 'package:amazon_clone/utils/color_theme.dart';
-import 'package:amazon_clone/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import 'package:amazon_clone/models/user_model_details.dart';
+import 'package:amazon_clone/utils/color_theme.dart';
+import 'package:amazon_clone/utils/constants.dart';
+
 class UserDetailsBar extends StatelessWidget {
   final double offset;
+  final UserDetailsModel userDetails;
   const UserDetailsBar({
     Key? key,
     required this.offset,
+    required this.userDetails,
   }) : super(key: key);
 
   @override
@@ -40,7 +44,7 @@ class UserDetailsBar extends StatelessWidget {
               SizedBox(
                 width: 250.w,
                 child: Text(
-                  "Deliver to Banku - Address",
+                  "Deliver to ${userDetails.name} - ${userDetails.address}",
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
