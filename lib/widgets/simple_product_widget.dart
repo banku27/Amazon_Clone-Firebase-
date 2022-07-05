@@ -1,4 +1,3 @@
-
 import 'package:amazon_clone/models/product_model.dart';
 import 'package:flutter/material.dart';
 
@@ -13,12 +12,12 @@ class SimpleProductWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-      //   Navigator.push(
-      //       context,
-      //       MaterialPageRoute(
-      //           builder: (context) =>
-      //               ProductScreen(productModel: productModel)));
-      // },
+        //   Navigator.push(
+        //       context,
+        //       MaterialPageRoute(
+        //           builder: (context) =>
+        //               ProductScreen(productModel: productModel)));
+      },
       child: AspectRatio(
         aspectRatio: 1 / 1,
         child: Container(

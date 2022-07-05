@@ -53,9 +53,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   SizedBox(
                     height: 40.h,
                   ),
-                  CategoryListView(),
-                  BannerAdWidget(),
-                  ProductShowList(
+                  const CategoryListView(),
+                  const BannerAdWidget(),
+                  const ProductShowList(
                     title: 'Upto 70% off',
                     children: [
                       SimpleProductWidget(
@@ -72,7 +72,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               "https://m.media-amazon.com/images/I/11M0jYc-tRL._SX90_SY90_.png")
                     ],
                   ),
-                  ProductShowList(
+                  const ProductShowList(
                     title: 'Upto 50% off',
                     children: [
                       SimpleProductWidget(
