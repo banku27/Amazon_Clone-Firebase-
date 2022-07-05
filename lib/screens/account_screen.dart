@@ -1,10 +1,14 @@
+import 'package:amazon_clone/models/product_model.dart';
 import 'package:amazon_clone/utils/color_theme.dart';
 import 'package:amazon_clone/utils/constants.dart';
 import 'package:amazon_clone/widgets/account_screen_app_bar.dart';
 import 'package:amazon_clone/widgets/custom_main_button.dart';
+import 'package:amazon_clone/widgets/product_show_case_list.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../widgets/simple_product_widget.dart';
 
 class AccountScreen extends StatefulWidget {
   const AccountScreen({Key? key}) : super(key: key);
@@ -26,7 +30,7 @@ class _AccountScreenState extends State<AccountScreen> {
             width: MediaQuery.of(context).size.width,
             child: Column(
               children: [
-                IntroductionWidgetAccountScreen(),
+                const IntroductionWidgetAccountScreen(),
                 SizedBox(
                   height: 10.h,
                 ),
@@ -57,6 +61,21 @@ class _AccountScreenState extends State<AccountScreen> {
                         //         builder: (context) => const SellScreen()));
                       }),
                 ),
+                ProductShowList(title: 'Your Orders', children: testChildren),
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: 5,
+                    itemBuilder: (context, index) => ListTile(
+                      title: const Text(
+                        "Order: Boat Earbuds 1600",
+                        style: TextStyle(fontWeight: FontWeight.w600),
+                      ),
+                      subtitle: const Text('Address: Somewhere on Earth'),
+                      trailing: IconButton(
+                          onPressed: () {}, icon: const Icon(Icons.check)),
+                    ),
+                  ),
+                )
               ],
             ),
           ),
