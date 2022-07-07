@@ -1,11 +1,14 @@
+import 'package:amazon_clone/models/product_model.dart';
 import 'package:amazon_clone/utils/color_theme.dart';
+import 'package:amazon_clone/widgets/custom_simple_rounded_button.dart';
 import 'package:amazon_clone/widgets/product_information_widget.dart';
 import 'package:amazon_clone/widgets/rounded_square_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CartItemWidget extends StatelessWidget {
-  const CartItemWidget({Key? key}) : super(key: key);
+  final ProductModel product;
+  const CartItemWidget({Key? key, required this.product}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -33,17 +36,17 @@ class CartItemWidget extends StatelessWidget {
                     child: SizedBox(
                       width: MediaQuery.of(context).size.width / 3,
                       child: Image.network(
-                        "https://m.media-amazon.com/images/I/81zgxmLFpyL._SL1500_.jpg",
+                        product.url,
                       ),
                     ),
                   ),
                   SizedBox(
                     width: 20.w,
                   ),
-                  const ProductInformationWidget(
-                      productName: 'Laptop Table',
-                      cost: 197.3,
-                      sellerName: 'Sreeeeeeja')
+                  ProductInformationWidget(
+                      productName: product.productName,
+                      cost: product.cost,
+                      sellerName: product.sellerName)
                 ],
               ),
               flex: 1,
@@ -54,7 +57,7 @@ class CartItemWidget extends StatelessWidget {
                   RoundedSquareButton(
                       child: Icon(Icons.remove),
                       onPressed: () {},
-                      color: Colors.grey[200]!,
+                      color: backgroundColor,
                       dimension: 50.h),
                   RoundedSquareButton(
                       child: Text(
@@ -66,16 +69,41 @@ class CartItemWidget extends StatelessWidget {
                       color: Colors.grey[200]!,
                       dimension: 50.h),
                   RoundedSquareButton(
-                      child: Icon(Icons.add),
+                      child: const Icon(Icons.add),
                       onPressed: () {},
-                      color: Colors.grey[200]!,
+                      color: backgroundColor,
                       dimension: 50.h),
                 ],
               ),
-              flex: 0,
+              flex: 1,
             ),
             Expanded(
-              child: Container(color: Colors.green),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Row(
+                    children: [
+                      CustomSimpleRoundedButton(
+                          onPressed: () {}, text: 'Delete'),
+                      SizedBox(
+                        width: 15.w,
+                      ),
+                      CustomSimpleRoundedButton(
+                          onPressed: () {}, text: 'Save for later'),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 15.h,
+                  ),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      'See more like this',
+                      style: TextStyle(color: activeCyanColor, fontSize: 15.sp),
+                    ),
+                  )
+                ],
+              ),
               flex: 1,
             )
           ],
