@@ -54,7 +54,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   ),
                   Container(
                     padding: const EdgeInsets.all(25),
-                    height: 380.h,
+                    height: 400.h,
                     width: 320.w,
                     decoration: BoxDecoration(
                       border: Border.all(
