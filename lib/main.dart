@@ -1,4 +1,5 @@
 import 'package:amazon_clone/layout/screen_layout.dart';
+import 'package:amazon_clone/screens/result_screen.dart';
 import 'package:amazon_clone/screens/sign_in_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -45,7 +46,8 @@ class AmazonClone extends StatelessWidget {
                 ),
               );
             } else if (user.hasData) {
-              return const ScreenLayout();
+              // return const ScreenLayout();
+              return ResultsScreen(query: 'Laptop bag');
             } else {
               return const SignInScreen();
             }
