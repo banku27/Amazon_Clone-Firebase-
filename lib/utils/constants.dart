@@ -130,3 +130,11 @@ List<Widget> testChildren = [
         noOfRating: 1),
   )
 ];
+
+List<String> keysOfRating = [
+  "Very bad",
+  "Poor",
+  "Average",
+  "Good",
+  "Excellent"
+];

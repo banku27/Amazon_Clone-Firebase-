@@ -1,4 +1,6 @@
 import 'package:amazon_clone/layout/screen_layout.dart';
+import 'package:amazon_clone/models/product_model.dart';
+import 'package:amazon_clone/screens/product_screen.dart';
 import 'package:amazon_clone/screens/result_screen.dart';
 import 'package:amazon_clone/screens/sign_in_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -47,7 +49,19 @@ class AmazonClone extends StatelessWidget {
                 ),
               );
             } else if (user.hasData) {
-              return const ScreenLayout();
+              return ProductScreen(
+                productModel: ProductModel(
+                    url:
+                        "https://m.media-amazon.com/images/I/11uufjN3lYL._SX90_SY90_.png",
+                    productName: "Rick Astley",
+                    cost: 9999999999999,
+                    discount: 0,
+                    uid: "eioejfbkn",
+                    sellerName: "Rick Seller",
+                    sellerUid: "983498ihjb",
+                    rating: 1,
+                    noOfRating: 1),
+              );
               // return ResultsScreen(query: 'laptop bag');
             } else {
               return const SignInScreen();
