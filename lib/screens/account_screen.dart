@@ -1,5 +1,6 @@
 import 'package:amazon_clone/models/user_model_details.dart';
 import 'package:amazon_clone/provider/user_detail_provider.dart';
+import 'package:amazon_clone/screens/sell_screen.dart';
 import 'package:amazon_clone/utils/color_theme.dart';
 import 'package:amazon_clone/utils/constants.dart';
 import 'package:amazon_clone/widgets/account_screen_app_bar.dart';
@@ -57,10 +58,10 @@ class _AccountScreenState extends State<AccountScreen> {
                       color: yellowColor,
                       isLoading: false,
                       onPressed: () {
-                        // Navigator.push(
-                        //     context,
-                        //     MaterialPageRoute(
-                        //         builder: (context) => const SellScreen()));
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const SellScreen()));
                       }),
                 ),
                 ProductShowList(title: 'Your Orders', children: testChildren),
