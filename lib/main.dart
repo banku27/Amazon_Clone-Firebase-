@@ -1,9 +1,8 @@
-import 'package:amazon_clone/layout/screen_layout.dart';
 import 'package:amazon_clone/models/product_model.dart';
 import 'package:amazon_clone/screens/product_screen.dart';
-import 'package:amazon_clone/screens/result_screen.dart';
+
 import 'package:amazon_clone/screens/sign_in_screen.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
@@ -52,13 +51,13 @@ class AmazonClone extends StatelessWidget {
               return ProductScreen(
                 productModel: ProductModel(
                     url:
-                        "https://m.media-amazon.com/images/I/11uufjN3lYL._SX90_SY90_.png",
-                    productName: "Rick Astley",
-                    cost: 9999999999999,
+                        'https://m.media-amazon.com/images/I/81zgxmLFpyL._SL1500_.jpg',
+                    productName: 'Laptop Table',
+                    cost: 197.29,
                     discount: 0,
-                    uid: "eioejfbkn",
-                    sellerName: "Rick Seller",
-                    sellerUid: "983498ihjb",
+                    uid: 'Banku',
+                    sellerName: 'Sreeeeeeeejaa',
+                    sellerUid: 'sreeeja8',
                     rating: 1,
                     noOfRating: 1),
               );

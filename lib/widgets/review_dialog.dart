@@ -1,7 +1,7 @@
-// import 'package:amazon_clone/model/review_model.dart';
-// import 'package:amazon_clone/model/user_details_model.dart';
-// import 'package:amazon_clone/providers/user_details_provider.dart';
-// import 'package:amazon_clone/resources/cloudfirestore_methods.dart';
+
+
+// import 'package:amazon_clone/models/review_model.dart';
+// import 'package:amazon_clone/resources/cloud_firestore_methods.dart';
 // import 'package:flutter/material.dart';
 // import 'package:provider/provider.dart';
 // import 'package:rating_dialog/rating_dialog.dart';
