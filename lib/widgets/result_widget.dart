@@ -1,6 +1,6 @@
 import 'package:amazon_clone/models/product_model.dart';
 import 'package:amazon_clone/utils/color_theme.dart';
-import 'package:amazon_clone/utils/utils.dart';
+
 import 'package:amazon_clone/widgets/cost_widget.dart';
 import 'package:amazon_clone/widgets/rating_star_widget.dart';
 
@@ -60,7 +60,7 @@ class ResultsWidget extends StatelessWidget {
                         color: activeCyanColor,
                       ),
                     ),
-                  )
+                  ),
                 ],
               ),
             ),
