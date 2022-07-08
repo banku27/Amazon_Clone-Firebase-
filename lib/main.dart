@@ -1,3 +1,4 @@
+import 'package:amazon_clone/layout/screen_layout.dart';
 import 'package:amazon_clone/models/product_model.dart';
 import 'package:amazon_clone/screens/product_screen.dart';
 
@@ -48,19 +49,20 @@ class AmazonClone extends StatelessWidget {
                 ),
               );
             } else if (user.hasData) {
-              return ProductScreen(
-                productModel: ProductModel(
-                    url:
-                        'https://m.media-amazon.com/images/I/81zgxmLFpyL._SL1500_.jpg',
-                    productName: 'Laptop Table',
-                    cost: 197.29,
-                    discount: 0,
-                    uid: 'Banku',
-                    sellerName: 'Sreeeeeeeejaa',
-                    sellerUid: 'sreeeja8',
-                    rating: 1,
-                    noOfRating: 1),
-              );
+              return const ScreenLayout();
+              // ProductScreen(
+              //   productModel: ProductModel(
+              //       url:
+              //           'https://m.media-amazon.com/images/I/81zgxmLFpyL._SL1500_.jpg',
+              //       productName: 'Laptop Table',
+              //       cost: 197.29,
+              //       discount: 0,
+              //       uid: 'Banku',
+              //       sellerName: 'Sreeeeeeeejaa',
+              //       sellerUid: 'sreeeja8',
+              //       rating: 1,
+              //       noOfRating: 1),
+              // );
               // return ResultsScreen(query: 'laptop bag');
             } else {
               return const SignInScreen();
