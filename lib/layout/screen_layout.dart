@@ -1,6 +1,8 @@
+import 'package:amazon_clone/provider/user_detail_provider.dart';
 import 'package:amazon_clone/utils/color_theme.dart';
 import 'package:amazon_clone/utils/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class ScreenLayout extends StatefulWidget {
   const ScreenLayout({Key? key}) : super(key: key);
@@ -28,6 +30,7 @@ class _ScreenLayoutState extends State<ScreenLayout> {
 
   @override
   Widget build(BuildContext context) {
+    Provider.of<UserDetailProvider>(context).getData();
     return DefaultTabController(
       length: 4,
       child: SafeArea(

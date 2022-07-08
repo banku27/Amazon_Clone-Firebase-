@@ -11,6 +11,9 @@ class UserDetailsModel {
         "name": name,
         "address": address,
       };
+  factory UserDetailsModel.getModeFromJson(Map<String, dynamic> json) {
+    return UserDetailsModel(name: json['name'], address: json['address']);
+  }
 }
 
 

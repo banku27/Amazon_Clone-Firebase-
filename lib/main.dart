@@ -1,5 +1,6 @@
 import 'package:amazon_clone/layout/screen_layout.dart';
 import 'package:amazon_clone/models/product_model.dart';
+import 'package:amazon_clone/provider/user_detail_provider.dart';
 import 'package:amazon_clone/screens/product_screen.dart';
 
 import 'package:amazon_clone/screens/sign_in_screen.dart';
@@ -10,6 +11,7 @@ import 'package:flutter/foundation.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -34,40 +36,45 @@ class AmazonClone extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-      builder: (context, child) => MaterialApp(
-        title: "Amazon Clone",
-        theme:
-            ThemeData.light().copyWith(scaffoldBackgroundColor: Colors.white),
-        debugShowCheckedModeBanner: false,
-        home: StreamBuilder(
-          stream: FirebaseAuth.instance.authStateChanges(),
-          builder: (context, AsyncSnapshot<User?> user) {
-            if (user.connectionState == ConnectionState.waiting) {
-              return const Center(
-                child: CircularProgressIndicator(
-                  color: Colors.orange,
-                ),
-              );
-            } else if (user.hasData) {
-              return const ScreenLayout();
-              // ProductScreen(
-              //   productModel: ProductModel(
-              //       url:
-              //           'https://m.media-amazon.com/images/I/81zgxmLFpyL._SL1500_.jpg',
-              //       productName: 'Laptop Table',
-              //       cost: 197.29,
-              //       discount: 0,
-              //       uid: 'Banku',
-              //       sellerName: 'Sreeeeeeeejaa',
-              //       sellerUid: 'sreeeja8',
-              //       rating: 1,
-              //       noOfRating: 1),
-              // );
-              // return ResultsScreen(query: 'laptop bag');
-            } else {
-              return const SignInScreen();
-            }
-          },
+      builder: (context, child) => MultiProvider(
+        providers: [
+          ChangeNotifierProvider(create: (_) => UserDetailProvider()),
+        ],
+        child: MaterialApp(
+          title: "Amazon Clone",
+          theme:
+              ThemeData.light().copyWith(scaffoldBackgroundColor: Colors.white),
+          debugShowCheckedModeBanner: false,
+          home: StreamBuilder(
+            stream: FirebaseAuth.instance.authStateChanges(),
+            builder: (context, AsyncSnapshot<User?> user) {
+              if (user.connectionState == ConnectionState.waiting) {
+                return const Center(
+                  child: CircularProgressIndicator(
+                    color: Colors.orange,
+                  ),
+                );
+              } else if (user.hasData) {
+                return const ScreenLayout();
+                // ProductScreen(
+                //   productModel: ProductModel(
+                //       url:
+                //           'https://m.media-amazon.com/images/I/81zgxmLFpyL._SL1500_.jpg',
+                //       productName: 'Laptop Table',
+                //       cost: 197.29,
+                //       discount: 0,
+                //       uid: 'Banku',
+                //       sellerName: 'Sreeeeeeeejaa',
+                //       sellerUid: 'sreeeja8',
+                //       rating: 1,
+                //       noOfRating: 1),
+                // );
+                // return ResultsScreen(query: 'laptop bag');
+              } else {
+                return const SignInScreen();
+              }
+            },
+          ),
         ),
       ),
       designSize: const Size(360, 800),
