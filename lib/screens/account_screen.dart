@@ -1,4 +1,5 @@
-import 'package:amazon_clone/models/product_model.dart';
+import 'package:amazon_clone/models/user_model_details.dart';
+import 'package:amazon_clone/provider/user_detail_provider.dart';
 import 'package:amazon_clone/utils/color_theme.dart';
 import 'package:amazon_clone/utils/constants.dart';
 import 'package:amazon_clone/widgets/account_screen_app_bar.dart';
@@ -7,8 +8,7 @@ import 'package:amazon_clone/widgets/product_show_case_list.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import '../widgets/simple_product_widget.dart';
+import 'package:provider/provider.dart';
 
 class AccountScreen extends StatefulWidget {
   const AccountScreen({Key? key}) : super(key: key);
@@ -20,6 +20,8 @@ class AccountScreen extends StatefulWidget {
 class _AccountScreenState extends State<AccountScreen> {
   @override
   Widget build(BuildContext context) {
+    // UserDetailsModel userDetailsModel =
+    //     Provider.of<UserDetailProvider>(context).userDetails;
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
@@ -103,8 +105,8 @@ class IntroductionWidgetAccountScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // UserDetailsModel userDetailsModel =
-    //     Provider.of<UserDetailsProvider>(context).userDetails;
+    UserDetailsModel userDetailsModel =
+        Provider.of<UserDetailProvider>(context).userDetails;
     return Container(
       height: kAppBarHeight / 2,
       decoration: const BoxDecoration(
@@ -139,7 +141,7 @@ class IntroductionWidgetAccountScreen extends StatelessWidget {
                       ),
                     ),
                     TextSpan(
-                      text: "Banku",
+                      text: "${userDetailsModel.name}",
                       style: TextStyle(
                         color: Colors.grey[800],
                         fontSize: 26,
