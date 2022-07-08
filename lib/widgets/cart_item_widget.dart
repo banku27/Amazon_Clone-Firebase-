@@ -1,5 +1,8 @@
 import 'package:amazon_clone/models/product_model.dart';
+import 'package:amazon_clone/screens/product_screen.dart';
+
 import 'package:amazon_clone/utils/color_theme.dart';
+import 'package:amazon_clone/utils/constants.dart';
 import 'package:amazon_clone/widgets/custom_simple_rounded_button.dart';
 import 'package:amazon_clone/widgets/product_information_widget.dart';
 import 'package:amazon_clone/widgets/rounded_square_button.dart';
@@ -28,26 +31,37 @@ class CartItemWidget extends StatelessWidget {
         child: Column(
           children: [
             Expanded(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Align(
-                    alignment: Alignment.topCenter,
-                    child: SizedBox(
-                      width: MediaQuery.of(context).size.width / 3,
-                      child: Image.network(
-                        product.url,
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          ProductScreen(productModel: product),
+                    ),
+                  );
+                },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Align(
+                      alignment: Alignment.topCenter,
+                      child: SizedBox(
+                        width: MediaQuery.of(context).size.width / 3,
+                        child: Image.network(
+                          product.url,
+                        ),
                       ),
                     ),
-                  ),
-                  SizedBox(
-                    width: 20.w,
-                  ),
-                  ProductInformationWidget(
-                      productName: product.productName,
-                      cost: product.cost,
-                      sellerName: product.sellerName)
-                ],
+                    SizedBox(
+                      width: 20.w,
+                    ),
+                    ProductInformationWidget(
+                        productName: product.productName,
+                        cost: product.cost,
+                        sellerName: product.sellerName)
+                  ],
+                ),
               ),
               flex: 1,
             ),
