@@ -1,6 +1,7 @@
 import 'dart:typed_data';
 
 import 'package:amazon_clone/models/product_model.dart';
+import 'package:amazon_clone/models/review_model.dart';
 import 'package:amazon_clone/models/user_model_details.dart';
 import 'package:amazon_clone/utils/utils.dart';
 import 'package:amazon_clone/widgets/simple_product_widget.dart';
@@ -101,5 +102,16 @@ class CloudFirestoreClass {
       children.add(SimpleProductWidget(productModel: model));
     }
     return children;
+  }
+
+  Future uploadReviewToDatabase(
+      {required String productUid, required ReviewModel model}) async {
+    await firebaseFirestore
+        .collection("Products")
+        .doc(productUid)
+        .collection("reviews")
+        .add(model.getJson());
+    print('done');
+    // await changeAverageRating(productUid: productUid, reviewModel: model);
   }
 }

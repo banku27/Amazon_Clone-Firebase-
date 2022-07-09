@@ -1,21 +1,16 @@
 import 'package:amazon_clone/models/product_model.dart';
 import 'package:amazon_clone/models/review_model.dart';
-
 import 'package:amazon_clone/utils/color_theme.dart';
 import 'package:amazon_clone/utils/constants.dart';
-
 import 'package:amazon_clone/widgets/cost_widget.dart';
 import 'package:amazon_clone/widgets/custom_main_button.dart';
 import 'package:amazon_clone/widgets/custom_simple_rounded_button.dart';
 import 'package:amazon_clone/widgets/rating_star_widget.dart';
-
+import 'package:amazon_clone/widgets/review_dialog.dart';
 import 'package:amazon_clone/widgets/review_widget.dart';
-
 import 'package:amazon_clone/widgets/search_bar_widget.dart';
 import 'package:amazon_clone/widgets/user_detail_bar.dart';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
-
 import 'package:flutter/material.dart';
 
 class ProductScreen extends StatefulWidget {
@@ -129,11 +124,11 @@ class _ProductScreenState extends State<ProductScreen> {
                           spaceThingy,
                           CustomSimpleRoundedButton(
                               onPressed: () {
-                                // showDialog(
-                                //     context: context,
-                                //     builder: (context) => ReviewDialog(
-                                //           productUid: widget.productModel.uid,
-                                //         ));
+                                showDialog(
+                                    context: context,
+                                    builder: (context) => ReviewDialog(
+                                          productUid: widget.productModel.uid,
+                                        ));
                               },
                               text: "Add a review for this product"),
                         ],
@@ -143,7 +138,7 @@ class _ProductScreenState extends State<ProductScreen> {
                         height: MediaQuery.of(context).size.height,
                         child: StreamBuilder(
                           stream: FirebaseFirestore.instance
-                              .collection("products")
+                              .collection("Products")
                               .doc(widget.productModel.uid)
                               .collection("reviews")
                               .snapshots(),
