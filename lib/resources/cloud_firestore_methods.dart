@@ -114,4 +114,12 @@ class CloudFirestoreClass {
     print('done');
     // await changeAverageRating(productUid: productUid, reviewModel: model);
   }
+
+  Future addProductToCart({required ProductModel productModel}) async {
+    await firebaseFirestore
+        .collection("users")
+        .doc(firebaseAuth.currentUser!.uid)
+        .collection("cart")
+        .add(productModel.getJson());
+  }
 }

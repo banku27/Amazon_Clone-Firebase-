@@ -1,7 +1,9 @@
 import 'package:amazon_clone/models/product_model.dart';
 import 'package:amazon_clone/models/review_model.dart';
+import 'package:amazon_clone/resources/cloud_firestore_methods.dart';
 import 'package:amazon_clone/utils/color_theme.dart';
 import 'package:amazon_clone/utils/constants.dart';
+import 'package:amazon_clone/utils/utils.dart';
 import 'package:amazon_clone/widgets/cost_widget.dart';
 import 'package:amazon_clone/widgets/custom_main_button.dart';
 import 'package:amazon_clone/widgets/custom_simple_rounded_button.dart';
@@ -115,11 +117,11 @@ class _ProductScreenState extends State<ProductScreen> {
                               color: yellowColor,
                               isLoading: false,
                               onPressed: () async {
-                                // await CloudFirestoreClass().addProductToCart(
-                                //     productModel: widget.productModel);
-                                // Utils().showSnackBar(
-                                //     context: context,
-                                //     content: "Added to cart.");
+                                await CloudFirestoreClass().addProductToCart(
+                                    productModel: widget.productModel);
+                                Utils().showSnackBar(
+                                    context: context,
+                                    content: "Added to cart.");
                               }),
                           spaceThingy,
                           CustomSimpleRoundedButton(
