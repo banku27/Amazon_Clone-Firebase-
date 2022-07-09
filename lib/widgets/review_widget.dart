@@ -42,7 +42,7 @@ class ReviewWidget extends StatelessWidget {
                 ),
                 Text(
                   keysOfRating[review.rating - 1],
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontWeight: FontWeight.bold,
                   ),
                 )

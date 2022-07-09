@@ -1,5 +1,5 @@
 import 'package:amazon_clone/models/product_model.dart';
-import 'package:amazon_clone/models/user_model_details.dart';
+
 import 'package:amazon_clone/utils/color_theme.dart';
 import 'package:amazon_clone/utils/constants.dart';
 import 'package:amazon_clone/widgets/cart_item_widget.dart';

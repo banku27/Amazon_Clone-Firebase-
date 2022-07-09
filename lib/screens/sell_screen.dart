@@ -1,6 +1,5 @@
 import 'dart:typed_data';
 
-import 'package:amazon_clone/models/user_model_details.dart';
 import 'package:amazon_clone/provider/user_detail_provider.dart';
 import 'package:amazon_clone/resources/cloud_firestore_methods.dart';
 import 'package:amazon_clone/utils/color_theme.dart';

@@ -1,8 +1,6 @@
 import 'package:amazon_clone/layout/screen_layout.dart';
-import 'package:amazon_clone/models/product_model.dart';
+
 import 'package:amazon_clone/provider/user_detail_provider.dart';
-import 'package:amazon_clone/screens/product_screen.dart';
-import 'package:amazon_clone/screens/sell_screen.dart';
 
 import 'package:amazon_clone/screens/sign_in_screen.dart';
 

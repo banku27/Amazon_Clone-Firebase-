@@ -2,7 +2,7 @@ import 'package:amazon_clone/models/product_model.dart';
 import 'package:amazon_clone/screens/product_screen.dart';
 
 import 'package:amazon_clone/utils/color_theme.dart';
-import 'package:amazon_clone/utils/constants.dart';
+
 import 'package:amazon_clone/widgets/custom_simple_rounded_button.dart';
 import 'package:amazon_clone/widgets/product_information_widget.dart';
 import 'package:amazon_clone/widgets/rounded_square_button.dart';
@@ -69,7 +69,7 @@ class CartItemWidget extends StatelessWidget {
               child: Row(
                 children: [
                   RoundedSquareButton(
-                      child: Icon(Icons.remove),
+                      child: const Icon(Icons.remove),
                       onPressed: () {},
                       color: backgroundColor,
                       dimension: 50.h),

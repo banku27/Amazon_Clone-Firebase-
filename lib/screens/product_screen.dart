@@ -1,6 +1,6 @@
 import 'package:amazon_clone/models/product_model.dart';
 import 'package:amazon_clone/models/review_model.dart';
-import 'package:amazon_clone/models/user_model_details.dart';
+
 import 'package:amazon_clone/utils/color_theme.dart';
 import 'package:amazon_clone/utils/constants.dart';
 
@@ -8,7 +8,7 @@ import 'package:amazon_clone/widgets/cost_widget.dart';
 import 'package:amazon_clone/widgets/custom_main_button.dart';
 import 'package:amazon_clone/widgets/custom_simple_rounded_button.dart';
 import 'package:amazon_clone/widgets/rating_star_widget.dart';
-import 'package:amazon_clone/widgets/review_dialog.dart';
+
 import 'package:amazon_clone/widgets/review_widget.dart';
 
 import 'package:amazon_clone/widgets/search_bar_widget.dart';
