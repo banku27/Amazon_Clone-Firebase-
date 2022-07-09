@@ -135,21 +135,23 @@ class _ProductScreenState extends State<ProductScreen> {
                       ),
                     ),
                     SizedBox(
-                        height: MediaQuery.of(context).size.height,
-                        child: StreamBuilder(
-                          stream: FirebaseFirestore.instance
-                              .collection("Products")
-                              .doc(widget.productModel.uid)
-                              .collection("reviews")
-                              .snapshots(),
-                          builder: (context,
-                              AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>>
-                                  snapshot) {
-                            if (snapshot.connectionState ==
-                                ConnectionState.waiting) {
-                              return Container();
-                            } else {
-                              return ListView.builder(
+                      height: MediaQuery.of(context).size.height / 2,
+                      child: StreamBuilder(
+                        stream: FirebaseFirestore.instance
+                            .collection("Products")
+                            .doc(widget.productModel.uid)
+                            .collection("reviews")
+                            .snapshots(),
+                        builder: (context,
+                            AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>>
+                                snapshot) {
+                          if (snapshot.connectionState ==
+                              ConnectionState.waiting) {
+                            return Container();
+                          } else {
+                            return Expanded(
+                              child: ListView.builder(
+                                  // physics: NeverScrollableScrollPhysics(),
                                   itemCount: snapshot.data!.docs.length,
                                   itemBuilder: (context, index) {
                                     ReviewModel model =
@@ -157,10 +159,12 @@ class _ProductScreenState extends State<ProductScreen> {
                                             json: snapshot.data!.docs[index]
                                                 .data());
                                     return ReviewWidget(review: model);
-                                  });
-                            }
-                          },
-                        ))
+                                  }),
+                            );
+                          }
+                        },
+                      ),
+                    ),
                   ],
                 ),
               ),
