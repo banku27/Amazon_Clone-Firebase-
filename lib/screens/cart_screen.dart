@@ -32,14 +32,39 @@ class _CartScreenState extends State<CartScreen> {
                     height: kAppBarHeight / 2,
                   ),
                   Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: CustomMainButton(
-                        child: const Text('Proceed to buy (n) items',
-                            style: TextStyle(color: Colors.black)),
-                        color: yellowColor,
-                        isLoading: false,
-                        onPressed: () {}),
-                  ),
+                      padding: const EdgeInsets.all(8.0),
+                      child: StreamBuilder(
+                        stream: FirebaseFirestore.instance
+                            .collection("users")
+                            .doc(FirebaseAuth.instance.currentUser!.uid)
+                            .collection("cart")
+                            .snapshots(),
+                        builder: (context,
+                            AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>>
+                                snapshot) {
+                          if (snapshot.connectionState ==
+                              ConnectionState.waiting) {
+                            return CustomMainButton(
+                              child: const Text(
+                                'Loading',
+                              ),
+                              color: yellowColor,
+                              isLoading: true,
+                              onPressed: () {},
+                            );
+                          } else {
+                            return CustomMainButton(
+                              child: Text(
+                                "Proceed to buy (${snapshot.data!.docs.length}) items.",
+                                style: const TextStyle(color: Colors.black),
+                              ),
+                              color: yellowColor,
+                              isLoading: false,
+                              onPressed: () {},
+                            );
+                          }
+                        },
+                      )),
                   Expanded(
                     child: StreamBuilder(
                       stream: FirebaseFirestore.instance
