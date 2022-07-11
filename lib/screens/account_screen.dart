@@ -35,7 +35,7 @@ class _AccountScreenState extends State<AccountScreen> {
           width: MediaQuery.of(context).size.width,
           child: Column(
             children: [
-              IntroductionWidgetAccountScreen(),
+              const IntroductionWidgetAccountScreen(),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: CustomMainButton(
@@ -133,7 +133,7 @@ class _AccountScreenState extends State<AccountScreen> {
                                           .doc(snapshot.data!.docs[index].id)
                                           .delete();
                                     },
-                                    icon: Icon(Icons.check)),
+                                    icon: const Icon(Icons.check)),
                               );
                             });
                       }

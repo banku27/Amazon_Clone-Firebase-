@@ -107,7 +107,7 @@ class _CartScreenState extends State<CartScreen> {
                   ),
                 ],
               ),
-              UserDetailsBar(
+              const UserDetailsBar(
                 offset: 0,
               ),
             ],
