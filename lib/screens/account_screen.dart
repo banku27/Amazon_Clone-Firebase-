@@ -5,6 +5,7 @@ import 'package:amazon_clone/provider/user_detail_provider.dart';
 import 'package:amazon_clone/screens/sell_screen.dart';
 import 'package:amazon_clone/utils/color_theme.dart';
 import 'package:amazon_clone/utils/constants.dart';
+
 import 'package:amazon_clone/widgets/account_screen_app_bar.dart';
 import 'package:amazon_clone/widgets/custom_main_button.dart';
 import 'package:amazon_clone/widgets/product_show_case_list.dart';
@@ -25,103 +26,120 @@ class AccountScreen extends StatefulWidget {
 class _AccountScreenState extends State<AccountScreen> {
   @override
   Widget build(BuildContext context) {
-    // UserDetailsModel userDetailsModel =
-    //     Provider.of<UserDetailProvider>(context).userDetails;
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: Colors.white,
-        appBar: AccountScreenAppBar(),
-        body: SingleChildScrollView(
-          child: SizedBox(
-            height: MediaQuery.of(context).size.height,
-            width: MediaQuery.of(context).size.width,
-            child: Column(
-              children: [
-                const IntroductionWidgetAccountScreen(),
-                SizedBox(
-                  height: 10.h,
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: CustomMainButton(
-                      child: const Text(
-                        "Sign Out",
-                        style: TextStyle(color: Colors.black),
-                      ),
-                      color: Colors.orange,
-                      isLoading: false,
-                      onPressed: () {
-                        FirebaseAuth.instance.signOut();
-                      }),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: CustomMainButton(
-                      child: const Text("Sell",
-                          style: TextStyle(color: Colors.black)),
-                      color: yellowColor,
-                      isLoading: false,
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const SellScreen()));
-                      }),
-                ),
-                FutureBuilder(
-                    future: FirebaseFirestore.instance
-                        .collection("users")
-                        .doc(FirebaseAuth.instance.currentUser!.uid)
-                        .collection("orders")
-                        .get(),
-                    builder: (context,
-                        AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>>
-                            snapshot) {
-                      if (snapshot.connectionState == ConnectionState.waiting) {
-                        return Container();
-                      } else {
-                        List<Widget> children = [];
-                        for (int i = 0; i < snapshot.data!.docs.length; i++) {
-                          ProductModel model = ProductModel.getModelFromJson(
-                              json: snapshot.data!.docs[i].data());
-                          children
-                              .add(SimpleProductWidget(productModel: model));
-                        }
-                        return ProductShowList(
-                            title: "Your orders", children: children);
-                      }
-                    }),
-                Padding(
-                  padding: const EdgeInsets.all(15.0),
-                  child: Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      'Order Requests',
-                      style: TextStyle(
-                          fontSize: 18.sp, fontWeight: FontWeight.bold),
+    return Scaffold(
+      backgroundColor: Colors.white,
+      appBar: AccountScreenAppBar(),
+      body: SingleChildScrollView(
+        child: SizedBox(
+          height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
+          child: Column(
+            children: [
+              IntroductionWidgetAccountScreen(),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: CustomMainButton(
+                    child: const Text(
+                      "Sign Out",
+                      style: TextStyle(color: Colors.black),
                     ),
+                    color: Colors.orange,
+                    isLoading: false,
+                    onPressed: () {
+                      FirebaseAuth.instance.signOut();
+                    }),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: CustomMainButton(
+                    child: const Text("Sell",
+                        style: TextStyle(color: Colors.black)),
+                    color: yellowColor,
+                    isLoading: false,
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const SellScreen()));
+                    }),
+              ),
+              FutureBuilder(
+                  future: FirebaseFirestore.instance
+                      .collection("users")
+                      .doc(FirebaseAuth.instance.currentUser!.uid)
+                      .collection("orders")
+                      .get(),
+                  builder: (context,
+                      AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>>
+                          snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return Container();
+                    } else {
+                      List<Widget> children = [];
+                      for (int i = 0; i < snapshot.data!.docs.length; i++) {
+                        ProductModel model = ProductModel.getModelFromJson(
+                            json: snapshot.data!.docs[i].data());
+                        children.add(SimpleProductWidget(productModel: model));
+                      }
+                      return ProductShowList(
+                          title: "Your orders", children: children);
+                    }
+                  }),
+              const Padding(
+                padding: EdgeInsets.all(15),
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    "Order Requests",
+                    style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
                   ),
                 ),
-                Expanded(
-                  child: ListView.builder(
-                      itemCount: 5,
-                      itemBuilder: (context, index) {
-                        OrderRequestModel model = OrderRequestModel(
-                            orderName: "Black Shoe",
-                            buyersAddress: "Somewhere On Earth");
-                        return ListTile(
-                          title: Text(
-                            "Order: ${model.orderName}",
-                            style: TextStyle(fontWeight: FontWeight.w600),
-                          ),
-                          subtitle: Text('Address: ${model.buyersAddress}'),
-                          trailing: IconButton(
-                              onPressed: () {}, icon: const Icon(Icons.check)),
-                        );
-                      }),
-                )
-              ],
-            ),
+              ),
+              Expanded(
+                  child: StreamBuilder(
+                      stream: FirebaseFirestore.instance
+                          .collection("users")
+                          .doc(FirebaseAuth.instance.currentUser!.uid)
+                          .collection("orderRequests")
+                          .snapshots(),
+                      builder: (context,
+                          AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>>
+                              snapshot) {
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return Container();
+                        } else {
+                          return ListView.builder(
+                              itemCount: snapshot.data!.docs.length,
+                              itemBuilder: (context, index) {
+                                OrderRequestModel model =
+                                    OrderRequestModel.getModelFromJson(
+                                        json:
+                                            snapshot.data!.docs[index].data());
+                                return ListTile(
+                                  title: Text(
+                                    "Order: ${model.orderName}",
+                                    style:
+                                        TextStyle(fontWeight: FontWeight.w500),
+                                  ),
+                                  subtitle:
+                                      Text("Address: ${model.buyersAddress}"),
+                                  trailing: IconButton(
+                                      onPressed: () async {
+                                        FirebaseFirestore.instance
+                                            .collection("users")
+                                            .doc(FirebaseAuth
+                                                .instance.currentUser!.uid)
+                                            .collection("orderRequests")
+                                            .doc(snapshot.data!.docs[index].id)
+                                            .delete();
+                                      },
+                                      icon: Icon(Icons.check)),
+                                );
+                              });
+                        }
+                      }))
+            ],
           ),
         ),
       ),

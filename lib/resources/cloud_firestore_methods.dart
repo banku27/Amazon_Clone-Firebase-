@@ -134,7 +134,7 @@ class CloudFirestoreClass {
         .delete();
   }
 
-  Future buyAllItemsInCart() async {
+  Future buyAllItemsInCart({required UserDetailsModel userDetails}) async {
     QuerySnapshot<Map<String, dynamic>> snapshot = await firebaseFirestore
         .collection("users")
         .doc(firebaseAuth.currentUser!.uid)
@@ -145,17 +145,19 @@ class CloudFirestoreClass {
       ProductModel model =
           ProductModel.getModelFromJson(json: snapshot.docs[i].data());
 
-      addProductToOrders(model: model);
+      addProductToOrders(model: model, userDetails: userDetails);
       await deleteProductFromCart(uid: model.uid);
     }
   }
 
-  Future addProductToOrders({required ProductModel model}) async {
+  Future addProductToOrders(
+      {required ProductModel model, required userDetails}) async {
     await firebaseFirestore
         .collection("users")
         .doc(firebaseAuth.currentUser!.uid)
         .collection("orders")
         .add(model.getJson());
+    await sendOrderRequest(model: model, userDetails: userDetails);
   }
 
   Future sendOrderRequest(

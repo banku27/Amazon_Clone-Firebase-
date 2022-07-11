@@ -1,4 +1,5 @@
 import 'package:amazon_clone/models/product_model.dart';
+import 'package:amazon_clone/provider/user_detail_provider.dart';
 import 'package:amazon_clone/resources/cloud_firestore_methods.dart';
 
 import 'package:amazon_clone/utils/color_theme.dart';
@@ -11,6 +12,7 @@ import 'package:amazon_clone/widgets/user_detail_bar.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class CartScreen extends StatefulWidget {
   const CartScreen({Key? key}) : super(key: key);
@@ -63,7 +65,11 @@ class _CartScreenState extends State<CartScreen> {
                               color: yellowColor,
                               isLoading: false,
                               onPressed: () async {
-                                await CloudFirestoreClass().buyAllItemsInCart();
+                                await CloudFirestoreClass().buyAllItemsInCart(
+                                    userDetails:
+                                        Provider.of<UserDetailProvider>(context,
+                                                listen: false)
+                                            .userDetails);
                                 Utils().showSnackBar(
                                     context: context,
                                     content: "View Order section");
