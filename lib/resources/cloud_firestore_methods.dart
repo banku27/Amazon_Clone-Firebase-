@@ -1,5 +1,6 @@
 import 'dart:typed_data';
 
+import 'package:amazon_clone/models/order_request_model.dart';
 import 'package:amazon_clone/models/product_model.dart';
 import 'package:amazon_clone/models/review_model.dart';
 import 'package:amazon_clone/models/user_model_details.dart';
@@ -155,5 +156,17 @@ class CloudFirestoreClass {
         .doc(firebaseAuth.currentUser!.uid)
         .collection("orders")
         .add(model.getJson());
+  }
+
+  Future sendOrderRequest(
+      {required ProductModel model,
+      required UserDetailsModel userDetails}) async {
+    OrderRequestModel orderRequestModel = OrderRequestModel(
+        orderName: model.productName, buyersAddress: userDetails.address);
+    await firebaseFirestore
+        .collection("users")
+        .doc(model.sellerUid)
+        .collection("orderRequests")
+        .add(orderRequestModel.getJson());
   }
 }

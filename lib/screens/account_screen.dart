@@ -1,3 +1,4 @@
+import 'package:amazon_clone/models/order_request_model.dart';
 import 'package:amazon_clone/models/product_model.dart';
 import 'package:amazon_clone/models/user_model_details.dart';
 import 'package:amazon_clone/provider/user_detail_provider.dart';
@@ -103,17 +104,21 @@ class _AccountScreenState extends State<AccountScreen> {
                 ),
                 Expanded(
                   child: ListView.builder(
-                    itemCount: 5,
-                    itemBuilder: (context, index) => ListTile(
-                      title: const Text(
-                        "Order: Boat Earbuds 1600",
-                        style: TextStyle(fontWeight: FontWeight.w600),
-                      ),
-                      subtitle: const Text('Address: Somewhere on Earth'),
-                      trailing: IconButton(
-                          onPressed: () {}, icon: const Icon(Icons.check)),
-                    ),
-                  ),
+                      itemCount: 5,
+                      itemBuilder: (context, index) {
+                        OrderRequestModel model = OrderRequestModel(
+                            orderName: "Black Shoe",
+                            buyersAddress: "Somewhere On Earth");
+                        return ListTile(
+                          title: Text(
+                            "Order: ${model.orderName}",
+                            style: TextStyle(fontWeight: FontWeight.w600),
+                          ),
+                          subtitle: Text('Address: ${model.buyersAddress}'),
+                          trailing: IconButton(
+                              onPressed: () {}, icon: const Icon(Icons.check)),
+                        );
+                      }),
                 )
               ],
             ),
