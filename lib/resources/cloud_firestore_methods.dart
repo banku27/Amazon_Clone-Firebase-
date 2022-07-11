@@ -113,7 +113,7 @@ class CloudFirestoreClass {
         .collection("reviews")
         .add(model.getJson());
     print('done');
-    // await changeAverageRating(productUid: productUid, reviewModel: model);
+    await changeAverageRating(productUid: productUid, reviewModel: model);
   }
 
   Future addProductToCart({required ProductModel productModel}) async {

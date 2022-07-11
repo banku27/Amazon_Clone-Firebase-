@@ -137,7 +137,7 @@ class _ProductScreenState extends State<ProductScreen> {
                       ),
                     ),
                     SizedBox(
-                        height: MediaQuery.of(context).size.height,
+                        height: MediaQuery.of(context).size.height / 2,
                         child: StreamBuilder(
                           stream: FirebaseFirestore.instance
                               .collection("Products")
@@ -152,6 +152,7 @@ class _ProductScreenState extends State<ProductScreen> {
                               return Container();
                             } else {
                               return ListView.builder(
+                                  physics: NeverScrollableScrollPhysics(),
                                   itemCount: snapshot.data!.docs.length,
                                   itemBuilder: (context, index) {
                                     ReviewModel model =
