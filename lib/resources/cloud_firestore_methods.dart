@@ -120,6 +120,16 @@ class CloudFirestoreClass {
         .collection("users")
         .doc(firebaseAuth.currentUser!.uid)
         .collection("cart")
-        .add(productModel.getJson());
+        .doc(productModel.uid)
+        .set(productModel.getJson());
+  }
+
+  Future deleteProductFromCart({required String uid}) async {
+    await firebaseFirestore
+        .collection("users")
+        .doc(firebaseAuth.currentUser!.uid)
+        .collection("cart")
+        .doc(uid)
+        .delete();
   }
 }

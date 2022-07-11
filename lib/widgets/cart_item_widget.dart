@@ -1,8 +1,8 @@
 import 'package:amazon_clone/models/product_model.dart';
+import 'package:amazon_clone/resources/cloud_firestore_methods.dart';
 import 'package:amazon_clone/screens/product_screen.dart';
-
 import 'package:amazon_clone/utils/color_theme.dart';
-
+import 'package:amazon_clone/utils/utils.dart';
 import 'package:amazon_clone/widgets/custom_simple_rounded_button.dart';
 import 'package:amazon_clone/widgets/product_information_widget.dart';
 import 'package:amazon_clone/widgets/rounded_square_button.dart';
@@ -84,7 +84,19 @@ class CartItemWidget extends StatelessWidget {
                       dimension: 50.h),
                   RoundedSquareButton(
                       child: const Icon(Icons.add),
-                      onPressed: () {},
+                      onPressed: () async {
+                        await CloudFirestoreClass().addProductToCart(
+                            productModel: ProductModel(
+                                url: product.url,
+                                productName: product.productName,
+                                cost: product.cost,
+                                discount: product.discount,
+                                uid: Utils().getUid(),
+                                sellerName: product.sellerName,
+                                sellerUid: product.sellerUid,
+                                rating: product.rating,
+                                noOfRating: product.noOfRating));
+                      },
                       color: backgroundColor,
                       dimension: 50.h),
                 ],
@@ -98,7 +110,11 @@ class CartItemWidget extends StatelessWidget {
                   Row(
                     children: [
                       CustomSimpleRoundedButton(
-                          onPressed: () {}, text: 'Delete'),
+                          onPressed: () async {
+                            CloudFirestoreClass()
+                                .deleteProductFromCart(uid: product.uid);
+                          },
+                          text: 'Delete'),
                       SizedBox(
                         width: 15.w,
                       ),
