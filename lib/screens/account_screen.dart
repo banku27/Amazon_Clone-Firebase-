@@ -1,3 +1,4 @@
+import 'package:amazon_clone/models/product_model.dart';
 import 'package:amazon_clone/models/user_model_details.dart';
 import 'package:amazon_clone/provider/user_detail_provider.dart';
 import 'package:amazon_clone/screens/sell_screen.dart';
@@ -6,6 +7,8 @@ import 'package:amazon_clone/utils/constants.dart';
 import 'package:amazon_clone/widgets/account_screen_app_bar.dart';
 import 'package:amazon_clone/widgets/custom_main_button.dart';
 import 'package:amazon_clone/widgets/product_show_case_list.dart';
+import 'package:amazon_clone/widgets/simple_product_widget.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -64,7 +67,29 @@ class _AccountScreenState extends State<AccountScreen> {
                                 builder: (context) => const SellScreen()));
                       }),
                 ),
-                ProductShowList(title: 'Your Orders', children: testChildren),
+                FutureBuilder(
+                    future: FirebaseFirestore.instance
+                        .collection("users")
+                        .doc(FirebaseAuth.instance.currentUser!.uid)
+                        .collection("orders")
+                        .get(),
+                    builder: (context,
+                        AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>>
+                            snapshot) {
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return Container();
+                      } else {
+                        List<Widget> children = [];
+                        for (int i = 0; i < snapshot.data!.docs.length; i++) {
+                          ProductModel model = ProductModel.getModelFromJson(
+                              json: snapshot.data!.docs[i].data());
+                          children
+                              .add(SimpleProductWidget(productModel: model));
+                        }
+                        return ProductShowList(
+                            title: "Your orders", children: children);
+                      }
+                    }),
                 Padding(
                   padding: const EdgeInsets.all(15.0),
                   child: Align(

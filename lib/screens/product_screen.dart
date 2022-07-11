@@ -95,12 +95,10 @@ class _ProductScreenState extends State<ProductScreen> {
                               ),
                               color: Colors.orange,
                               isLoading: false,
-                              onPressed: ()
-                                  // async
-                                  {
-                                // await CloudFirestoreClass().addProductToOrders(
-                                //     model: widget.productModel,
-                                //     userDetails:
+                              onPressed: () async {
+                                await CloudFirestoreClass().addProductToOrders(
+                                    model: widget.productModel);
+                                // userDetails:
                                 //         Provider.of<UserDetailsProvider>(
                                 //                 context,
                                 //                 listen: false)

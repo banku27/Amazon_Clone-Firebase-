@@ -1,7 +1,9 @@
 import 'package:amazon_clone/models/product_model.dart';
+import 'package:amazon_clone/resources/cloud_firestore_methods.dart';
 
 import 'package:amazon_clone/utils/color_theme.dart';
 import 'package:amazon_clone/utils/constants.dart';
+import 'package:amazon_clone/utils/utils.dart';
 import 'package:amazon_clone/widgets/cart_item_widget.dart';
 import 'package:amazon_clone/widgets/custom_main_button.dart';
 import 'package:amazon_clone/widgets/search_bar_widget.dart';
@@ -60,7 +62,12 @@ class _CartScreenState extends State<CartScreen> {
                               ),
                               color: yellowColor,
                               isLoading: false,
-                              onPressed: () {},
+                              onPressed: () async {
+                                await CloudFirestoreClass().buyAllItemsInCart();
+                                Utils().showSnackBar(
+                                    context: context,
+                                    content: "View Order section");
+                              },
                             );
                           }
                         },

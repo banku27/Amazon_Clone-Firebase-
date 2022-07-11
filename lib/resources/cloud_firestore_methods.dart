@@ -132,4 +132,28 @@ class CloudFirestoreClass {
         .doc(uid)
         .delete();
   }
+
+  Future buyAllItemsInCart() async {
+    QuerySnapshot<Map<String, dynamic>> snapshot = await firebaseFirestore
+        .collection("users")
+        .doc(firebaseAuth.currentUser!.uid)
+        .collection("cart")
+        .get();
+
+    for (int i = 0; i < snapshot.docs.length; i++) {
+      ProductModel model =
+          ProductModel.getModelFromJson(json: snapshot.docs[i].data());
+
+      addProductToOrders(model: model);
+      await deleteProductFromCart(uid: model.uid);
+    }
+  }
+
+  Future addProductToOrders({required ProductModel model}) async {
+    await firebaseFirestore
+        .collection("users")
+        .doc(firebaseAuth.currentUser!.uid)
+        .collection("orders")
+        .add(model.getJson());
+  }
 }
