@@ -26,7 +26,7 @@ class ResultsScreen extends StatelessWidget {
                   text: TextSpan(
                     children: [
                       const TextSpan(
-                        text: "Showing results for ",
+                        text: "Showing results for  ",
                         style: TextStyle(
                           fontSize: 17,
                         ),
@@ -44,14 +44,16 @@ class ResultsScreen extends StatelessWidget {
             Expanded(
               child: FutureBuilder(
                 future: FirebaseFirestore.instance
-                    .collection("products")
+                    .collection("Products")
                     .where("productName", isEqualTo: query)
                     .get(),
                 builder: (context,
                     AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>>
                         snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
-                    return const CircularProgressIndicator();
+                    return const CircularProgressIndicator(
+                      color: Colors.orange,
+                    );
                   } else {
                     return GridView.builder(
                         gridDelegate:

@@ -151,7 +151,8 @@ class CloudFirestoreClass {
   }
 
   Future addProductToOrders(
-      {required ProductModel model, required userDetails}) async {
+      {required ProductModel model,
+      required UserDetailsModel userDetails}) async {
     await firebaseFirestore
         .collection("users")
         .doc(firebaseAuth.currentUser!.uid)
@@ -170,5 +171,6 @@ class CloudFirestoreClass {
         .doc(model.sellerUid)
         .collection("orderRequests")
         .add(orderRequestModel.getJson());
+    print('everythig is alright');
   }
 }

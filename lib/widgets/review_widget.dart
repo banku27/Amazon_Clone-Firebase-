@@ -32,7 +32,7 @@ class ReviewWidget extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(right: 8),
                   child: SizedBox(
-                    width: MediaQuery.of(context).size.width / 4,
+                    width: MediaQuery.of(context).size.width / 3.7,
                     child: FittedBox(
                       child: RatingStarWidget(
                         rating: review.rating,

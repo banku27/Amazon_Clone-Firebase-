@@ -105,7 +105,8 @@ class _ProductScreenState extends State<ProductScreen> {
                                                 listen: false)
                                             .userDetails);
                                 Utils().showSnackBar(
-                                    context: context, content: "Done");
+                                    context: context,
+                                    content: "View Order Section");
                               }),
                           spaceThingy,
                           CustomMainButton(
@@ -139,7 +140,7 @@ class _ProductScreenState extends State<ProductScreen> {
                         height: MediaQuery.of(context).size.height,
                         child: StreamBuilder(
                           stream: FirebaseFirestore.instance
-                              .collection("products")
+                              .collection("Products")
                               .doc(widget.productModel.uid)
                               .collection("reviews")
                               .snapshots(),
