@@ -173,4 +173,18 @@ class CloudFirestoreClass {
         .add(orderRequestModel.getJson());
     print('everythig is alright');
   }
+
+  Future changeAverageRating(
+      {required String productUid, required ReviewModel reviewModel}) async {
+    DocumentSnapshot snapshot =
+        await firebaseFirestore.collection("Products").doc(productUid).get();
+    ProductModel model =
+        ProductModel.getModelFromJson(json: (snapshot.data() as dynamic));
+    int currentRating = model.rating;
+    int newRating = ((currentRating + reviewModel.rating) / 2).toInt();
+    await firebaseFirestore
+        .collection("Products")
+        .doc(productUid)
+        .update({"rating": newRating});
+  }
 }

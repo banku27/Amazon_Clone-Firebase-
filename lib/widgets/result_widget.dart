@@ -1,4 +1,5 @@
 import 'package:amazon_clone/models/product_model.dart';
+import 'package:amazon_clone/screens/product_screen.dart';
 import 'package:amazon_clone/utils/color_theme.dart';
 
 import 'package:amazon_clone/widgets/cost_widget.dart';
@@ -18,12 +19,12 @@ class ResultsWidget extends StatelessWidget {
     // Size screenSize = Utils().getScreenSize();
     return GestureDetector(
       onTap: () {
-        // Navigator.push(
-        //   context,
-        //   MaterialPageRoute(
-        //     builder: (context) => ProductScreen(productModel: product),
-        //   ),
-        // );
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ProductScreen(productModel: product),
+          ),
+        );
       },
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10),
