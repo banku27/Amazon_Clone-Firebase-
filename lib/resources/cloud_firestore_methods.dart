@@ -55,21 +55,22 @@ class CloudFirestoreClass {
         double cost = double.parse(rawCost);
         cost = cost - (cost * discount / 100);
         ProductModel product = ProductModel(
-            url: url,
-            productName: productName,
-            cost: cost,
-            discount: discount,
-            uid: uid,
-            sellerName: sellerName,
-            sellerUid: sellerUid,
-            rating: 5,
-            noOfRating: 0);
+          url: url,
+          productName: productName,
+          cost: cost,
+          discount: discount,
+          uid: uid,
+          sellerName: sellerName,
+          sellerUid: sellerUid,
+          rating: 5,
+          noOfRating: 0,
+        );
 
         await firebaseFirestore
             .collection('Products')
             .doc(uid)
             .set(product.getJson());
-        print(url);
+        // print(url);
         output = "success";
       } catch (e) {
         output = e.toString();
@@ -112,7 +113,7 @@ class CloudFirestoreClass {
         .doc(productUid)
         .collection("reviews")
         .add(model.getJson());
-    print('done');
+    // print('done');
     await changeAverageRating(productUid: productUid, reviewModel: model);
   }
 
@@ -171,7 +172,7 @@ class CloudFirestoreClass {
         .doc(model.sellerUid)
         .collection("orderRequests")
         .add(orderRequestModel.getJson());
-    print('everythig is alright');
+    // print('everythig is alright');
   }
 
   Future changeAverageRating(
@@ -181,7 +182,7 @@ class CloudFirestoreClass {
     ProductModel model =
         ProductModel.getModelFromJson(json: (snapshot.data() as dynamic));
     int currentRating = model.rating;
-    int newRating = ((currentRating + reviewModel.rating) / 2).toInt();
+    int newRating = (currentRating + reviewModel.rating) ~/ 2;
     await firebaseFirestore
         .collection("Products")
         .doc(productUid)
