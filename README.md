@@ -1,16 +1,11 @@
 # amazon_clone
 
-A new Flutter project.
+<img src="https://github.com/banku27/Amazon_Clone-Firebase-/assets/55456058/93cafcbf-e1e5-4a6b-a6bf-51756093c413" width="320" height="750">
 
-## Getting Started
+<img src="https://github.com/banku27/Amazon_Clone-Firebase-/assets/55456058/69ae9758-2ebc-4f79-bad6-e3d0efe6591b" width="320" height="750">
 
-This project is a starting point for a Flutter application.
+<img src="https://github.com/banku27/Amazon_Clone-Firebase-/assets/55456058/86e91ebf-2c9c-4adb-b9b1-c5573cba528f" width="320" height="750">
 
-A few resources to get you started if this is your first Flutter project:
+<img src="https://github.com/banku27/Amazon_Clone-Firebase-/assets/55456058/2e493d87-bd5d-4808-a54d-b431518e767b" width="320" height="750">
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+<img src="https://github.com/banku27/Amazon_Clone-Firebase-/assets/55456058/c07884f8-de74-4c87-a11b-87e97b66cf18)" width="320" height="750">
