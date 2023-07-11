@@ -1,4 +1,4 @@
-# amazon_clone
+# amazon_clone (Screenshots)
 
 <img src="https://github.com/banku27/Amazon_Clone-Firebase-/assets/55456058/93cafcbf-e1e5-4a6b-a6bf-51756093c413" width="320" height="750">
 
